@@ -16,7 +16,7 @@ As a pre-requisite you should have a username and password for the postgres inte
 Aircloak installation (ask your admin for these). Assign these values to `AIRCLOAK_PG_USER`
 and `AIRCLOAK_PG_PASSWORD` environment variables. 
 
-> Note the call to ``ac.connect()`` can be used as a context manager. Using the ``with`` statement, the connection 
+> Note the call to ``ac.connect()`` can be used as a context manager: Using the ``with`` statement, the connection 
 > is automatically closed cleanly when it it goes out of scope.
 
 ```python
@@ -38,4 +38,11 @@ with ac.connect(host=AIRCLOAK_PG_HOST, port=AIRCLOAK_PG_PORT,
     tables = conn.get_tables()
 
     print(tables)
+
+    feeling_now_counts = conn.query('''
+    select feeling_now, count(*), count_noise(*)
+    from survey
+    group by 1
+    order by 1 desc
+    ''')
 ```
