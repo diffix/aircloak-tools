@@ -7,6 +7,13 @@ provide clear error messages when something doesn't go as planned.
 
 Query results are return as `pandas` dataframes. 
 
+## Installation
+
+The package can be installed in youir local environment using pip:
+```
+pip install aircloak-tools
+```
+
 
 ## Example
 
