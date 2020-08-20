@@ -14,7 +14,10 @@ FROM mcr.microsoft.com/vscode/devcontainers/python:0-${VARIANT}
 # COPY requirements.txt /tmp/pip-tmp/
 # RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
 #    && rm -rf /tmp/pip-tmp
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+RUN pipx install poetry
+WORKDIR /workspace
+# COPY poetry.lock pyproject.toml ./
+# RUN poetry config virtualenvs.create false
 
 # [Optional] Uncomment this section to install additional packages.
 #

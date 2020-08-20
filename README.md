@@ -1,11 +1,24 @@
+[![GitHub license](https://img.shields.io/github/license/diffix/aircloak-tools)](https://github.com/diffix/aircloak-tools/blob/master/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/diffix/aircloak-tools)](https://github.com/diffix/aircloak-tools/issues)
+
 # Python Aircloak Tools
 
-A small package for querying an Aircloak service via the postgres api. 
+Tools for querying an Aircloak api. 
+
+This package contains two main components:
+- (Aircloak Api)[#aircloak-api]: Wrapper around psycopg to query Aircloak directly.
+- (Explorer)[#explorer]: An interface to Diffix Explorer for data analytics.
+
+## Aircloak Api
 
 The main aim is to provide an Aircloak-friendly wrapper around `psycopg2`, and in particular to
 provide clear error messages when something doesn't go as planned. 
 
-Query results are return as `pandas` dataframes. 
+Query results are returned as `pandas` dataframes. 
+
+## Explorer
+
+Uses [Diffix Explorer](https://github.com/diffix/explorer) to return enhanced statistics. Please see the project homepage for further information about Explorer. This feature should be considered a work-in-progress.
 
 ## Installation
 
@@ -14,6 +27,7 @@ The package can be installed in youir local environment using pip:
 pip install aircloak-tools
 ```
 
+To use Explorer Features you will also need to run [Diffix Explorer](https://github.com/diffix/explorer).
 
 ## Example
 
