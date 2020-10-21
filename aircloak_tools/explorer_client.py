@@ -21,6 +21,9 @@ class ExplorerSession:
         self.api_key = api_key
 
     def _post_explore(self, dataset: str, table: str, columns: List[str]) -> str:
+        logger.debug(
+            f'POSTing to /explore for {dataset}:{table}:{columns}.')
+
         response = requests.post(
             f"{self.explorer_api_url}/explore",
             json={
@@ -41,6 +44,9 @@ class ExplorerSession:
 
         if 'id' not in body:
             raise ExplorerError(response)
+
+        logger.debug(
+            f'Polling results for exploration "{body["id"]}".')
 
         return body['id']
 
@@ -78,9 +84,6 @@ class ExplorerSession:
 
 
 class Exploration:
-    # Cache Responses
-    RESPONSE_CACHE: Dict[str, Dict] = {}
-
     def __init__(self, session: ExplorerSession, dataset: str, table: str, columns: List[str]):
         self.dataset = dataset
         self.table = table
@@ -114,7 +117,8 @@ class Exploration:
 
         return self.cache_entry
 
-    # CACHE #
+    # RESPONSE CACHE #
+    RESPONSE_CACHE: Dict[str, Dict] = {}
 
     @property
     def cache_entry(self) -> Optional[Dict]:

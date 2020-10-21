@@ -12,9 +12,14 @@ def test_version():
     assert __version__ == '0.2.0'
 
 
-def test_exploration_run() -> None:
-    session = explorer.explorer_session(base_url="http://explorer", port=80)
-    result = explorer.explore(session, "gda_banking",
+@pytest.fixture(scope='module')
+def explorer_session() -> ExplorerSession:
+    return explorer.explorer_session(base_url="http://explorer", port=80)
+
+
+def test_exploration_run(explorer_session) -> None:
+    result = explorer.explore(explorer_session, "gda_banking",
                               "loans", ["amount", "duration"])
 
-    assert True
+    assert len(result) > 0
+    assert result['status'] == 'Complete'
