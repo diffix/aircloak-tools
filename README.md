@@ -1,11 +1,11 @@
-[![GitHub license](https://img.shields.io/github/license/diffix/aircloak-tools)](https://github.com/diffix/aircloak-tools/blob/master/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/diffix/aircloak-tools)](https://github.com/diffix/aircloak-tools/issues)
+[![GitHub license](https://img.shields.io/github/license/diffix/aircloak-tools)](https://github.com/diffix/aircloak-tools/blob/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/diffix/aircloak-tools)](https://github.com/diffix/aircloak-tools/issues)
 
 # Python Aircloak Tools
 
-Tools for querying an Aircloak api. 
+Tools for querying an Aircloak api.
 
 This package contains two main components:
+
 - [Aircloak Api](#aircloak-api): Wrapper around psycopg to query Aircloak directly.
 - [Explorer](#explorer): An interface to Diffix Explorer for data analytics.
 
@@ -18,12 +18,13 @@ Query results are returned as `pandas` dataframes.
 
 ## Explorer
 
-Uses [Diffix Explorer](https://github.com/diffix/explorer) to return enhanced statistics. Please see the project homepage for further information about Explorer. 
+Uses [Diffix Explorer](https://github.com/diffix/explorer) to return enhanced statistics. Please see the project homepage for further information about Explorer.
 
 ## Installation
 
 The package can be installed in youir local environment using pip:
-```
+
+```bash
 pip install aircloak-tools
 ```
 
@@ -36,7 +37,6 @@ The following code shows how to initiate a connection and execute a query.
 As a pre-requisite you should have a username and password for the postgres interface of an
 Aircloak installation (ask your admin for these). Assign these values to `AIRCLOAK_PG_USER`
 and `AIRCLOAK_PG_PASSWORD` environment variables. 
-
 
 ```python
 import aircloak_tools as ac
