@@ -50,7 +50,7 @@ class ExplorerSession:
 
         return body['id']
 
-    def _poll_get_result(self, id: str, timeout: int = 10 * 60):
+    def _poll_get_result(self, id: str, timeout: int):
         poll_count: int = 0
         poll_interval: int = 1
         poll_max_interval: int = 2 ** 3
@@ -93,7 +93,7 @@ class Exploration:
         self.cache_id: str = '/'.join([session.aircloak_api_url, dataset, table,
                                        '+'.join(columns)])
 
-    def explore(self, refresh_cache: bool):
+    def explore(self, refresh_cache: bool, timeout: int):
         if (refresh_cache or self.cache_entry is None):
             try:
                 id = self.session._post_explore(
@@ -103,7 +103,7 @@ class Exploration:
                     f"Unable to launch exploration.\n{err}")
 
             try:
-                result = self.session._poll_get_result(id)
+                result = self.session._poll_get_result(id, timeout)
             except TimeoutError as err:
                 self.log_and_raise_error(f"Explorer request timed out.\n{err}")
 
