@@ -137,6 +137,6 @@ class Exploration:
     def clear_cache(cls):
         cls.RESPONSE_CACHE = {}
 
-    def log_and_raise_error(self, msg: str, err: RuntimeError):
+    def log_and_raise_error(self, msg: str, err: Exception):
         logger.error(msg)
         raise err
